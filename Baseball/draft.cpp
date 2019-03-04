@@ -21,7 +21,18 @@ struct Player {
 };
 
 struct Team {
-	string teamName;
+	string teamName, startC, start1B, start2B, start3B, startSS, startLF, startCF, startRF, util1, util2, startP1, startP2, startP3, reliefP1, reliefP2, reliefP3, utilP1, utilP2, utilP3, utilP4, bench1, bench2, bench3, bench4, bench5;
+	int runs, doubles, triples, homeRuns, battedIn, hWalks, hStrikeouts, netStolen, plateApp, pitchApp, gamesStarted, wins, losses, completeGames, pWalks, pStrikeouts, holds, qualityStarts, netSaves;
+	float avg, obp, slg, innings, pERA, pWHIP, pKBB;
+
+	/*
+	C, 1B, 2B, 3B, SS, LF, CF, RF
+	Util, Util
+	3 SP
+	3 RP
+	4 P
+	BN, BN, BN, BN, BN, DL, DL, DL, NA
+	*/
 };
 
 class DraftTime {
@@ -40,6 +51,7 @@ class DraftTime {
 	void importHitters();
   // void importPitchers();
 	void searchPlayers();
+	void teamStats();
 };
 
 int main() {
@@ -108,6 +120,7 @@ void DraftTime::printMenu()
 		cout << "\n1. Draft player\n";
 		cout << "2. Show projections\n";
 		cout << "3. Search player\n";
+		cout << "4. Compare team stats\n";
 		cout << "9. Quit\n\n";
 
 		cout << "Enter selection: ";
@@ -118,6 +131,9 @@ void DraftTime::printMenu()
 			case 2: projections();
 				break;
 			case 3: searchPlayers();
+				break;
+			case 4: teamStats();
+				break;
 			case 9: cout << "Are you sure you'd like to quit? " << endl;
 			quit = true;
 				break;
@@ -139,7 +155,12 @@ void DraftTime::searchPlayers()
     if (playerSearch == playerArr[i].name)
       cout << playerArr[i].name << ", " << playerArr[i].playerID << endl;
   }
+}
 
+void DraftTime::teamStats()
+{
+	// add stats and average
+	// sqrt((teamstat - average) ^ 2) / (n - 1)
 }
 
 void DraftTime::projections()
